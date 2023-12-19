@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native"
 import StyledText from "./StyledStyledText"
+import RepositoryStats from "./RepositoryStats"
 
 // Todos los View en RN tiene un 'display: flex' por defecto
 const RepositoryItem = (props) => (
@@ -7,10 +8,7 @@ const RepositoryItem = (props) => (
         <StyledText fontSize='subheading' fontWeight='bold'>FullName: {props.fullName}</StyledText>
         <StyledText>Description: {props.description}</StyledText>
         <StyledText>Language: {props.language}</StyledText>
-        <StyledText>Forks: {props.forksCount}</StyledText>
-        <StyledText>Stars: {props.stargazersCount}</StyledText>
-        <StyledText>Rating: {props.ratingAverage}</StyledText>
-        <StyledText>Review: {props.reviewCount}</StyledText>
+        <RepositoryStats {...props}/>
     </View>
 )
 
