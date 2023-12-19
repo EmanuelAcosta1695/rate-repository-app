@@ -1,27 +1,61 @@
 import React from 'react'
-import { View, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import StyledText from './StyledText.jsx'
 import Constants from 'expo-constants'
 import theme from '../theme.js'
+import { Link, useLocation } from 'react-router-native'
 
 const styles = StyleSheet.create({
-    contaienr: {
+    container: {
         backgroundColor: theme.appBar.primary,
         paddingTop: Constants.statusBarHeight + 10,
-        paddingBottom: 10,
         paddingLeft: 10
     },
     text: {
         color: theme.appBar.textPrimary
+    },
+    scroll: {
+        paddingBottom: 15
+    },
+    text: {
+        color: theme.appBar.textSecondary,
+        paddingHorizontal: 10
+    },
+    active: {
+        color: theme.appBar.textPrimary
     }
 })
+
+// active -> if this tap is active
+// children -> the text
+// to -> where have to go
+const AppBarTap = ({ children, to}) => {
+    const { pathname } = useLocation(); // know the view path
+
+    const active = pathname === to // show the tab of the view where we are highlighted
+
+    const textStyle = [
+        styles.text, 
+        active && styles.active
+    ]
+
+    return (
+        <Link to={to}>
+            <StyledText fontWeight='bold' style={textStyle}>
+                {children}
+            </StyledText>
+        </Link>
+    )
+}
+
 
 const AppBar = () => {
     return (
         <View style={styles.container}>
-            <StyledText fontWeight='bold' style={styles.text}>
-                Repositories
-            </StyledText>
+            <ScrollView horizontal style={styles.scroll}>
+                <AppBarTap to='/'>Repositories</AppBarTap>
+                <AppBarTap to='/signin'>Sign In</AppBarTap>
+            </ScrollView>
         </View>
     )
 }
