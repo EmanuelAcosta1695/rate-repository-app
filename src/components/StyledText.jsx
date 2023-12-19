@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
   }
 })
 
+
+// style -> e.g. <StyledText style={styles.language}>Language: {props.language}</StyledText>
 export default function StyledText ({ align, children, color, fontSize, fontWeight, style, ...restOfProps }) {
   const textStyles = [
     styles.text,
