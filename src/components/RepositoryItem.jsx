@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native"
+import { View, Text, StyleSheet, Image, Platform } from "react-native"
 import StyledText from "./StyledStyledText"
 import RepositoryStats from "./RepositoryStats"
 
@@ -40,7 +40,11 @@ const styles = StyleSheet.create({
     language: {
         padding: 4,
         color: theme.colors.white,
-        backgroundColor: theme.colors.primary,
+        backgroundColor: Platform.select({ // it depends on the OS, what color it going to use
+            android: theme.colors.primary,
+            ios: 'orange',
+            default: '#09f'
+        }),
         alignSelf: 'flex-start', // I move the element and it occupies only that position.
         marginVertical: 4,
         borderRadius: 4, // to show "borderRadius" it's necessary "overflow: 'hidden'"
