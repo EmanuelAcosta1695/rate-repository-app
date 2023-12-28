@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, Platform } from "react-native"
-import StyledText from "./StyledStyledText"
+import StyledText from "./StyledText"
 import RepositoryStats from "./RepositoryStats"
 
 // With the property 'flex:1' you can adjust one view to another
